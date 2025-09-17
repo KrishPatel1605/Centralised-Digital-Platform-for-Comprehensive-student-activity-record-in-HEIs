@@ -1,9 +1,9 @@
 "use client"
 
 import type React from "react"
-
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useRouter } from "next/navigation"
+import { useAuth } from "@/contexts/auth-context"
 
 interface AuthGuardProps {
   children: React.ReactNode
@@ -12,36 +12,37 @@ interface AuthGuardProps {
 }
 
 export function AuthGuard({ children, requiredRole, redirectTo = "/login" }: AuthGuardProps) {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null)
-  const [userRole, setUserRole] = useState<string | null>(null)
+  const { user, isLoading } = useAuth()
   const router = useRouter()
 
   useEffect(() => {
-    // Simulate auth check - in real app, this would check JWT/session
-    const checkAuth = () => {
-      const token = localStorage.getItem("auth_token")
-      const role = localStorage.getItem("user_role")
+    console.log("[v0] AuthGuard: Checking auth - isLoading:", isLoading, "user:", !!user, "requiredRole:", requiredRole)
 
-      if (!token) {
-        setIsAuthenticated(false)
-        router.push(redirectTo)
-        return
-      }
-
-      setIsAuthenticated(true)
-      setUserRole(role)
-
-      // Check role-based access
-      if (requiredRole && role !== requiredRole) {
-        router.push("/unauthorized")
-        return
-      }
+    // Don't redirect while still loading
+    if (isLoading) {
+      console.log("[v0] AuthGuard: Still loading, waiting...")
+      return
     }
 
-    checkAuth()
-  }, [requiredRole, redirectTo, router])
+    // If no user and not loading, redirect to login
+    if (!user) {
+      console.log("[v0] AuthGuard: No user found, redirecting to login")
+      router.push(redirectTo)
+      return
+    }
 
-  if (isAuthenticated === null) {
+    // Check role-based access
+    if (requiredRole && user.role !== requiredRole) {
+      console.log("[v0] AuthGuard: Role mismatch. Required:", requiredRole, "User role:", user.role)
+      router.push("/unauthorized")
+      return
+    }
+
+    console.log("[v0] AuthGuard: Auth check passed")
+  }, [user, isLoading, requiredRole, redirectTo, router])
+
+  // Show loading while auth is being checked
+  if (isLoading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
@@ -52,7 +53,13 @@ export function AuthGuard({ children, requiredRole, redirectTo = "/login" }: Aut
     )
   }
 
-  if (!isAuthenticated) {
+  // Don't render children if not authenticated
+  if (!user) {
+    return null
+  }
+
+  // Don't render if role doesn't match
+  if (requiredRole && user.role !== requiredRole) {
     return null
   }
 

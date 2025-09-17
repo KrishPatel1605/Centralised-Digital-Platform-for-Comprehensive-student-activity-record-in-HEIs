@@ -3,23 +3,26 @@
 import type React from "react"
 
 import { useState } from "react"
+import { useAuth } from "@/contexts/auth-context"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { GraduationCap, Eye, EyeOff } from "lucide-react"
+import { GraduationCap, Eye, EyeOff, Info } from "lucide-react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
+  const [selectedRole, setSelectedRole] = useState("student")
+  const { login, isLoading } = useAuth()
+  const router = useRouter()
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setIsLoading(true)
     setError("")
 
     const formData = new FormData(e.currentTarget)
@@ -27,18 +30,41 @@ export default function LoginPage() {
     const password = formData.get("password") as string
     const role = formData.get("role") as string
 
-    // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false)
-      // For demo purposes, redirect based on role
-      if (role === "student") {
-        window.location.href = "/student/dashboard"
-      } else if (role === "faculty") {
-        window.location.href = "/faculty/dashboard"
-      } else if (role === "admin") {
-        window.location.href = "/admin/dashboard"
-      }
-    }, 1000)
+    console.log("[v0] Login: Attempting login with role:", role, "email:", email)
+
+    const success = await login(email, password, role)
+
+    console.log("[v0] Login: Login result:", success)
+
+    if (success) {
+      console.log("[v0] Login: Login successful, redirecting based on role:", role)
+
+      // Add a small delay to ensure auth state is updated
+      setTimeout(() => {
+        if (role === "student") {
+          console.log("[v0] Login: Redirecting to student dashboard")
+          router.push("/student/dashboard")
+        } else if (role === "faculty") {
+          console.log("[v0] Login: Redirecting to faculty dashboard")
+          router.push("/faculty/dashboard")
+        } else if (role === "admin") {
+          console.log("[v0] Login: Redirecting to admin dashboard")
+          router.push("/admin/dashboard")
+        }
+      }, 100)
+    } else {
+      console.log("[v0] Login: Login failed")
+      setError("Invalid credentials. Please use the test credentials provided below.")
+    }
+  }
+
+  const getTestCredentials = (role: string) => {
+    const credentials = {
+      student: { email: "student@test.com", password: "student123" },
+      faculty: { email: "faculty@test.com", password: "faculty123" },
+      admin: { email: "admin@test.com", password: "admin123" },
+    }
+    return credentials[role as keyof typeof credentials]
   }
 
   return (
@@ -52,6 +78,29 @@ export default function LoginPage() {
           <h1 className="text-2xl font-bold mb-2">Welcome Back</h1>
           <p className="text-muted-foreground">Sign in to your account to continue</p>
         </div>
+
+        <Card className="mb-4 border-blue-200 bg-blue-50">
+          <CardContent className="pt-4">
+            <div className="flex items-start gap-2">
+              <Info className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
+              <div className="text-sm">
+                <p className="font-medium text-blue-900 mb-2">Test Credentials:</p>
+                <div className="space-y-1 text-blue-800">
+                  <p>
+                    <strong>{selectedRole.charAt(0).toUpperCase() + selectedRole.slice(1)}:</strong>
+                  </p>
+                  <p>
+                    Email: <code className="bg-blue-100 px-1 rounded">{getTestCredentials(selectedRole)?.email}</code>
+                  </p>
+                  <p>
+                    Password:{" "}
+                    <code className="bg-blue-100 px-1 rounded">{getTestCredentials(selectedRole)?.password}</code>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
         <Card>
           <CardHeader>
@@ -68,7 +117,7 @@ export default function LoginPage() {
 
               <div className="space-y-2">
                 <Label htmlFor="role">Role</Label>
-                <Select name="role" defaultValue="student" required>
+                <Select name="role" defaultValue="student" required onValueChange={setSelectedRole}>
                   <SelectTrigger>
                     <SelectValue placeholder="Select your role" />
                   </SelectTrigger>
@@ -89,6 +138,7 @@ export default function LoginPage() {
                   placeholder="Enter your email"
                   required
                   className="w-full"
+                  defaultValue={getTestCredentials(selectedRole)?.email}
                 />
               </div>
 
@@ -102,6 +152,7 @@ export default function LoginPage() {
                     placeholder="Enter your password"
                     required
                     className="w-full pr-10"
+                    defaultValue={getTestCredentials(selectedRole)?.password}
                   />
                   <Button
                     type="button"
