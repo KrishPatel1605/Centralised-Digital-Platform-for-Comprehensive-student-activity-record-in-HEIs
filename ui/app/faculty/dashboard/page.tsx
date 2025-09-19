@@ -63,7 +63,7 @@ const pendingSubmissions = [
   {
     id: 1,
     student: {
-      name: "John Doe",
+      name: "Pratik",
       id: "STU123456",
       department: "Computer Science",
       semester: "6th Semester",
@@ -74,7 +74,7 @@ const pendingSubmissions = [
       description: "Completed AWS Cloud Practitioner certification course with 85% score",
       type: "certification",
       category: "Technical Skills",
-      submittedDate: "2024-03-01",
+      submittedDate: "2025-03-01",
       documents: ["aws-certificate.pdf", "score-report.pdf"],
       tags: ["AWS", "Cloud Computing", "Certification"],
     },
@@ -83,7 +83,7 @@ const pendingSubmissions = [
   {
     id: 2,
     student: {
-      name: "Jane Smith",
+      name: "Jaya Sahane",
       id: "STU789012",
       department: "Computer Science",
       semester: "4th Semester",
@@ -94,7 +94,7 @@ const pendingSubmissions = [
       description: "Won 1st place in the annual university hackathon with an AI-powered study assistant app",
       type: "competition",
       category: "Competitions",
-      submittedDate: "2024-02-28",
+      submittedDate: "2024-09-28",
       documents: ["hackathon-certificate.pdf", "project-demo.mp4"],
       tags: ["Hackathon", "AI", "First Place", "Team Work"],
     },
@@ -103,7 +103,7 @@ const pendingSubmissions = [
   {
     id: 3,
     student: {
-      name: "Mike Johnson",
+      name: "Mukesh Jamwal",
       id: "STU345678",
       department: "Electrical Engineering",
       semester: "8th Semester",
@@ -114,7 +114,7 @@ const pendingSubmissions = [
       description: "Presented research paper on autonomous navigation systems",
       type: "conference",
       category: "Research",
-      submittedDate: "2024-02-25",
+      submittedDate: "2025-02-25",
       documents: ["conference-paper.pdf", "presentation-slides.pdf"],
       tags: ["IEEE", "Robotics", "Research", "Presentation"],
     },
@@ -123,7 +123,7 @@ const pendingSubmissions = [
   {
     id: 4,
     student: {
-      name: "Sarah Wilson",
+      name: "Sara Harinandani",
       id: "STU901234",
       department: "Computer Science",
       semester: "6th Semester",
@@ -243,7 +243,7 @@ export default function FacultyDashboard() {
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" className="relative h-8 w-8 rounded-full">
                     <Avatar className="h-8 w-8">
-                      <AvatarImage src="/faculty-avatar.png" alt="Dr. Sarah Johnson" />
+                      <AvatarImage src="/faculty-avatar.png" alt="Dr. Vijaya" />
                       <AvatarFallback>SJ</AvatarFallback>
                     </Avatar>
                   </Button>
@@ -251,7 +251,7 @@ export default function FacultyDashboard() {
                 <DropdownMenuContent className="w-56" align="end" forceMount>
                   <DropdownMenuLabel className="font-normal">
                     <div className="flex flex-col space-y-1">
-                      <p className="text-sm font-medium leading-none">Dr. Sarah Johnson</p>
+                      <p className="text-sm font-medium leading-none">Dr. Vijaya</p>
                       <p className="text-xs leading-none text-muted-foreground">Computer Science Department</p>
                     </div>
                   </DropdownMenuLabel>

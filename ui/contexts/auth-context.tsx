@@ -29,7 +29,7 @@ const TEST_CREDENTIALS = {
     user: {
       id: "1",
       email: "student@test.com",
-      name: "John Doe",
+      name: "Mukesh Jamwal",
       role: "student" as const,
       department: "Computer Science",
       studentId: "CS2021001",
@@ -52,7 +52,7 @@ const TEST_CREDENTIALS = {
     user: {
       id: "3",
       email: "admin@test.com",
-      name: "Michael Johnson",
+      name: "Mukesh Jamwal",
       role: "admin" as const,
     },
   },

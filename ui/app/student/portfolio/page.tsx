@@ -49,14 +49,14 @@ import { AuthGuard } from "@/components/auth-guard"
 
 // Mock student data for portfolio
 const studentData = {
-  name: "John Doe",
+  name: "",
   studentId: "STU123456",
   department: "Computer Science",
   semester: "6th Semester",
-  email: "john.doe@university.edu",
+  email: "mukesh@university.edu",
   phone: "+1 (555) 123-4567",
   location: "New York, USA",
-  website: "johndoe.dev",
+  website: "mukesh.dev",
   avatar: "/student-avatar.png",
   bio: "Passionate computer science student with expertise in full-stack development, AI/ML, and cloud technologies. Experienced in leading teams and contributing to open-source projects.",
   gpa: 3.8,

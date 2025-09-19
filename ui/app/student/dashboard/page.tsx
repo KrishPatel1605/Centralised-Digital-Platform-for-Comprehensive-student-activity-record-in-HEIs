@@ -34,7 +34,7 @@ import { AuthGuard } from "@/components/auth-guard"
 
 // Mock data for demonstration
 const studentData = {
-  name: "John Doe",
+  name: "Mukesh Jamwal",
   studentId: "STU123456",
   department: "Computer Science",
   semester: "6th Semester",

@@ -62,7 +62,7 @@ const activities = [
     status: "approved",
     submittedDate: "2024-03-01",
     approvedDate: "2024-03-03",
-    approvedBy: "Dr. Sarah Johnson",
+    approvedBy: "Dr. Vijaya",
     documents: ["aws-certificate.pdf", "score-report.pdf"],
     tags: ["AWS", "Cloud Computing", "Certification"],
   },
@@ -73,7 +73,7 @@ const activities = [
     type: "competition",
     category: "Competitions",
     status: "pending",
-    submittedDate: "2024-02-28",
+    submittedDate: "2025-03-4",
     documents: ["hackathon-certificate.pdf", "project-demo.mp4"],
     tags: ["Hackathon", "AI", "First Place", "Team Work"],
   },
@@ -84,9 +84,9 @@ const activities = [
     type: "internship",
     category: "Work Experience",
     status: "approved",
-    submittedDate: "2024-02-15",
-    approvedDate: "2024-02-18",
-    approvedBy: "Prof. Michael Chen",
+    submittedDate: "2025-02-27",
+    approvedDate: "2025-03-3",
+    approvedBy: "Prof. Miley Cyrus",
     documents: ["internship-certificate.pdf", "performance-review.pdf"],
     tags: ["Internship", "Full Stack", "Web Development"],
   },
@@ -97,9 +97,9 @@ const activities = [
     type: "volunteer",
     category: "Community Service",
     status: "rejected",
-    submittedDate: "2024-02-10",
-    rejectedDate: "2024-02-12",
-    rejectedBy: "Dr. Emily Davis",
+    submittedDate: "2025-02-10",
+    rejectedDate: "2025-02-12",
+    rejectedBy: "Dr. Mukta Navis",
     rejectionReason: "Insufficient documentation provided",
     documents: ["volunteer-hours.pdf"],
     tags: ["Volunteering", "Teaching", "Community Service"],
@@ -111,9 +111,9 @@ const activities = [
     type: "conference",
     category: "Professional Development",
     status: "approved",
-    submittedDate: "2024-01-20",
-    approvedDate: "2024-01-22",
-    approvedBy: "Dr. Sarah Johnson",
+    submittedDate: "2024-11-20",
+    approvedDate: "2024-11-22",
+    approvedBy: "Dr. Sonali",
     documents: ["conference-certificate.pdf", "workshop-completion.pdf"],
     tags: ["React", "Conference", "Next.js", "TypeScript"],
   },
@@ -206,7 +206,7 @@ export default function ActivitiesPage() {
                 <DropdownMenuContent className="w-56" align="end" forceMount>
                   <DropdownMenuLabel className="font-normal">
                     <div className="flex flex-col space-y-1">
-                      <p className="text-sm font-medium leading-none">John Doe</p>
+                      <p className="text-sm font-medium leading-none">Mukesh Jamwal</p>
                       <p className="text-xs leading-none text-muted-foreground">STU123456</p>
                     </div>
                   </DropdownMenuLabel>

@@ -87,7 +87,7 @@ const recentActivities = [
   {
     id: 1,
     type: "approval",
-    message: "Dr. Sarah Johnson approved 5 student activities",
+    message: "Dr. Vijaya approved 5 student activities",
     timestamp: "2 hours ago",
     icon: CheckCircle,
     color: "text-green-600",
@@ -584,10 +584,10 @@ export default function AdminDashboard() {
                 <CardContent>
                   <div className="space-y-3">
                     {[
-                      { name: "NAAC Self-Study Report - March 2024", date: "2024-03-15", size: "2.4 MB" },
-                      { name: "Student Analytics - February 2024", date: "2024-02-28", size: "1.8 MB" },
+                      { name: "NAAC Self-Study Report - September 2024", date: "2024-03-15", size: "2.4 MB" },
+                      { name: "Student Analytics - January 2025", date: "2024-02-28", size: "1.8 MB" },
                       { name: "AICTE Annual Report - 2023-24", date: "2024-02-15", size: "3.2 MB" },
-                      { name: "Department Performance - Q4 2023", date: "2024-01-30", size: "1.5 MB" },
+                      { name: "Department Performance - Q4 2024", date: "2024-01-30", size: "1.5 MB" },
                     ].map((report, index) => (
                       <div key={index} className="flex items-center justify-between p-3 border rounded">
                         <div>
